@@ -1,0 +1,23 @@
+<head>
+  <meta charset="utf-8">
+  <title>{{if .IsHome}}{{ .Title }}{{else}}{{ .Title }} | {{ .Site.Title }}{{end}}</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}" />
+  {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  {{ hugo.Generator }}
+
+  <link rel="apple-touch-icon" href="{{ `img/icons/AR23logo192.png` | relURL }}" sizes="192x192" />
+  <link rel="shortcut icon" href="{{ `img/icons/AR23logo192.png` | relURL }}" type="image/png">
+  <meta name="theme-color" content="#2196f3" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="TaufiqHdyt" />
+
+  {{ $manifest := resources.Get "manifest.webmanifest" }}
+  <link rel="manifest" href="{{ $manifest.RelPermalink }}">
+
+  {{ $styles := resources.Get "css/style.css" | minify }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+
+</head>

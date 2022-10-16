@@ -1,0 +1,28 @@
+<div id="work">
+  <h3>Recent Works</h3>
+  <p>Project I've been working on.</p>
+  <div class="projects">
+    {{ range (where .Site.RegularPages "Section" "project") }}
+    <div class="item">
+      <div class="container">
+        <img
+        {{ with .Params.thumbnail }}
+        {{ $img := resources.Get . }}
+        {{ $thumb := $img.Resize "350x" }}
+        src="{{ $thumb.RelPermalink }}" width="100%" 
+        {{ end }}
+        alt="{{ .Params.Title }}">
+      </div>
+      <p>
+        <a href="{{ .RelPermalink }}">
+          {{ .Title }}
+        </a>
+      </p>
+      <p><small>{{ .Params.description }}</small></p>
+    </div>
+    {{ end }}
+    <div class="goto">
+      <a href="https://github.com/TaufiqHdyt" class="button" target="_blank" rel="noopener noreferrer">Go to GitHub Profile</a>
+    </div>
+  </div>
+</div>

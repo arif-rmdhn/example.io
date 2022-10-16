@@ -1,0 +1,25 @@
+<header>
+  <section id="profile-image">
+    <div class="image-container">
+      {{ $avatar := resources.Get "img/avatar-min.jpg" }}
+      {{ $img := $avatar.Resize "100x100" }}
+      <a href="{{ .Sites.First.Home.RelPermalink }}">
+        <img src="{{ $img.RelPermalink }}" alt="Taufiq Hdyt avatar">
+      </a>
+    </div>
+  </section>
+  <section id="profile-summary">
+    <div id="nickname">
+      <h1 class="name">{{ .Site.Title }}</h1>
+      <h2 class="position">Blogger</h2>
+    </div>
+  </section>
+  <section id="nav">
+    <nav class="main-nav">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.nav }}
+      <a class="{{if or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </section>
+</header>

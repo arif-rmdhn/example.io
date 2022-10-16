@@ -1,0 +1,14 @@
+{{ $swjs := resources.Get "sw.js" | minify }}
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("{{ $swjs.RelPermalink }}", { scope: "/" })
+    .then(function (registration) {
+      console.log("Service Worker Registered");
+    });
+  navigator.serviceWorker.ready.then(function (registration) {
+    console.log("Service Worker Ready");
+  });
+}
+</script>
+{{ template "_internal/google_analytics_async.html" . }}

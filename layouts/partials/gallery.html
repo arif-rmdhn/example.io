@@ -1,0 +1,28 @@
+<div id="gallery">
+  <h3>Gallery</h3>
+  <p>Photograph Showcase.</p>
+  <div class="photos">
+    {{ range (where .Site.RegularPages "Section" "gallery") }}
+    <div class="item">
+      <div class="container">
+        <img
+        {{ with .Params.thumbnail }}
+        {{ $img := resources.Get . }}
+        {{ $thumb := $img.Resize "350x" }}
+        src="{{ $thumb.RelPermalink }}" width="100%" 
+        {{ end }}
+        alt="{{ .Params.Title }}">
+      </div>
+      <p>
+        <a href="{{ .RelPermalink }}">
+          {{ .Title }}
+        </a>
+      </p>
+      <p><small>{{ .Params.description }}</small></p>
+    </div>
+    {{ end }}
+    <div class="goto">
+      <a href="https://instagram.com/TaufieqHdyt" class="button" target="_blank" rel="noopener noreferrer">Go to Instagram Profile</a>
+    </div>
+  </div>
+</div>
